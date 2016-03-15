@@ -28,7 +28,7 @@ func BootstrapPaginator(page, perPage, count, interval int, hrefTemplate string)
 		} else if p.Label == "next" {
 			res = append(res, strings.Replace(`<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>`, "#", url, 1))
 		} else {
-			h := strings.Replace(strings.Replace(`<li class=""><a href="#">5</a></li>`, "#", url, 1), "5", p.Label, 1)
+			h := strings.Replace(strings.Replace(`<li class=""><a href="#">{PAGENUM}</a></li>`, "#", url, 1), "{PAGENUM}", p.Label, 1)
 			if p.IsActive {
 				h = strings.Replace(h, `class=""`, `class="active"`, 1)
 			}
