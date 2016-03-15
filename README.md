@@ -13,13 +13,15 @@ paginator.Paginator(1, 10, 5, 2)
 // returns []PaginatorPage raw data (see below)
 ```
 
-`page` (in example: 1) is 1-based
-`perPage` (in example: 10)
-`count` (total items to list)
-`interval` (in example: 2) shows how many pages around current to show
+- `page` (in example: 1) is 1-based
 
-`1 ... 6 [7] 8 ... 20` is interval = 1
-`1 ... 5 6 [7] 8 9 ... 20` is interval = 2
+- `perPage` (in example: 10)
+
+- `count` (total items to list)
+
+- `interval` (in example: 2) shows how many pages around current to show
+  - `1 ... 6 [7] 8 ... 20` is interval = 1
+  - `1 ... 5 6 [7] 8 9 ... 20` is interval = 2
 
 
 ```go
