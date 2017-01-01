@@ -19,24 +19,24 @@ type PaginatorPage struct {
 // 1 ... 5 6 [7] 8 9 ... 20 -- interval = 2
 func BootstrapPaginator(page, perPage, count, interval int, hrefTemplate string) string {
 	res := []string{}
-	res = append(res, `<nav><ul class="pagination">`)
+	res = append(res, `<ul class="pagination">`)
 	for _, p := range Paginator(page, perPage, count, interval) {
 		url := strings.Replace(hrefTemplate, "#", strconv.Itoa(p.Page), 1)
 
 		if p.Label == "previous" {
-			res = append(res, strings.Replace(`<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>`, "#", url, 1))
+			res = append(res, strings.Replace(`<li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>`, "#", url, 1))
 		} else if p.Label == "next" {
-			res = append(res, strings.Replace(`<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>`, "#", url, 1))
+			res = append(res, strings.Replace(`<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>`, "#", url, 1))
 		} else {
-			h := strings.Replace(strings.Replace(`<li class=""><a href="#">{PAGENUM}</a></li>`, "#", url, 1), "{PAGENUM}", p.Label, 1)
+			h := strings.Replace(strings.Replace(`<li class="page-item"><a class="page-link" href="#">{PAGENUM}</a></li>`, "#", url, 1), "{PAGENUM}", p.Label, 1)
 			if p.IsActive {
-				h = strings.Replace(h, `class=""`, `class="active"`, 1)
+				h = strings.Replace(h, `class="page-item"`, `class="page-item active"`, 1)
 			}
 			res = append(res, h)
 		}
 	}
-	res = append(res, `</ul></nav>`)
-	return strings.Join(res, "\n")
+	res = append(res, `</ul>`)
+	return strings.Join(res, "")
 }
 
 func Paginator(page, perPage, count, interval int) []PaginatorPage {
